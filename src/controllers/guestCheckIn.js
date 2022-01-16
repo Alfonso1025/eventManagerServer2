@@ -34,5 +34,17 @@ module.exports={
         } catch (error) {
             console.log(error)
         }
+    },
+    getEvent:async(req,res)=>{
+        try {
+            const weddingId=req.params.weddingId
+            console.log(weddingId)
+            const event=await pool.query("SELECT * FROM events WHERE wedding_id=$1",
+            [weddingId])
+            res.send(event.rows)
+        } 
+        catch (error) {
+            console.log(error)
+        }
     }
 }

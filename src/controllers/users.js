@@ -2,7 +2,7 @@ const pool=require('../services/db')
 const jwtGenerator=require('../services/jwtGenerator')
 const Resolver= require('../services/resolver')
 const bcrypt= require('bcrypt')
-const resolver = require('../services/resolver')
+
 
 
 module.exports = {

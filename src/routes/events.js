@@ -2,7 +2,6 @@
 const {Router}=require('express')
 const router=Router()
 const controller= require('../controllers/events')
-const { route } = require('./dashboard')
 const authorization=require('../middleware/authorization')
 
 router.use(authorization)

@@ -62,7 +62,7 @@ module.exports={
         const resolver=Resolver(res)
         try {
             const guestId=req.params.guestId
-            const deletedGuest=pool.query('DELETE FROM guest_list WHERE guest_is=$1',
+            const deletedGuest=await pool.query('DELETE FROM guest_list WHERE guestlist_id=$1',
             [guestId], (err, resolve)=>{
                 if(!err) return resolver.success(deletedGuest,"deleted succesfully")
                 
