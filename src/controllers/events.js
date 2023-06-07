@@ -77,6 +77,15 @@ module.exports={
             console.log(err)
         }
 
+    },
+    imageUrl:async(req,res)=>{
+        try {
+           
+
+        }
+         catch (error) {
+            console.log(error)
+        }
     }
 
 
