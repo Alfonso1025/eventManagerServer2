@@ -25,7 +25,7 @@ module.exports={
             const event=await pool.query("SELECT * FROM events WHERE user_id=$1",
             [userId], (err,resolve)=>{
                 if(!err) return resolver.success(resolve.rows, "success")
-                resolver.failed(err,"could not get event" )
+                return resolver.internalServerError(err, err.message )
             })
            
         } catch (error) {

@@ -32,12 +32,15 @@ module.exports={
         const listOfGuest= await pool.query('SELECT * FROM guest_list WHERE wedding_id=$1',
         [eventId])
         console.log(listOfGuest.rows)
-//send response as a json
-        resolver.success(listOfGuest.rows, "success")
+        if(listOfGuest.rows.length < 1) return resolver.success(listOfGuest.rows, 'no_guest_yet')
+
+        return resolver.success(listOfGuest.rows, "success")
         
         } 
         catch (error) {
             console.log(error.message)
+            return resolver.internalServerError(error, error.message)
+          
         }
     },
     //update guest by id
@@ -50,11 +53,13 @@ module.exports={
             [guestName,guestLastName,guestEmail,code,isAttending,guestId],
             (err,resolve)=>{
                 if(!err) return resolver.success(updatedGuest,"updated succesfully")
-                resolver.failed(err,"could not update")
+                return resolver.internalServerError(err,err.message)
             })
             
         } catch (error) {
             console.log(error)
+            return resolver.internalServerError(error, error.message)
+
         }
     },
     //delete guest by id
